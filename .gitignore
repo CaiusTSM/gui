@@ -234,3 +234,14 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+
+# General
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.obj
+*.pdb
+*.idb
+/x64
+/x86
