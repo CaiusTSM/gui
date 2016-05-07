@@ -1,2 +1,2 @@
 # gui
-gooey system
+gui system
