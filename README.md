@@ -1,2 +1,2 @@
 # gui
-handmade gui system
+gui system
