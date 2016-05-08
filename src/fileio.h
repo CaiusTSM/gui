@@ -47,7 +47,7 @@ bool read_file_to_string(const char *file_path, bool binary, char **file_data, i
 
 	if (result == 0)
 	{
-		delete[] buffer;
+		delete[] (char *)buffer;
 		CloseHandle(file_handle);
 
 		return false;

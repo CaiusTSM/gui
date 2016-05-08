@@ -47,8 +47,6 @@ struct window {
 	int cursor_y;
 	bool mouse_state[3];
 
-	cursor_type cursor_type;
-
 	unsigned char *keyboard_state;
 	int num_keys;
 };
@@ -148,6 +146,7 @@ static LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM l
 	}
 	case WM_SETCURSOR:
 	{
+		/*
 		HCURSOR hcursor = 0;
 
 		switch (current_window->cursor_type)
@@ -196,6 +195,7 @@ static LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM l
 
 		SetCursor(hcursor);
 		break;
+		*/
 	}
 	}
 
@@ -222,7 +222,7 @@ window *create_window(
 
 	HINSTANCE hInstance = GetModuleHandle(0);
 
-	LPWNDCLASSEX lpwcx = {};
+	LPWNDCLASSEX lpwcx;
 	int is_registered = GetClassInfoEx(
 		hInstance,
 		class_name,
@@ -299,7 +299,6 @@ window *create_window(
 
 	win->hinstance = hInstance;
 	win->window_handle = hwnd;
-	win->bmi = {};
 
 	win->is_open = true;
 

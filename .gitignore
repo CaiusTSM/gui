@@ -245,5 +245,4 @@ _Pvt_Extensions
 *.idb
 /x64
 /x86
-*.bat
 *.exe
