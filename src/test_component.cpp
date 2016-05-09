@@ -33,6 +33,12 @@ void on_resize(window *window, int argc, void **args) {
 
 int main() {
 	window *window = create_window(L"test window", -1, -1, 800, 600, on_resize, 0, 0);
+	
+	component *com = create_component();
+	com->x = 100;
+	com->y = 100;
+	com->width = 100;
+	com->height = 100;
 
 	while (window->is_open) {
 		unsigned char *row = (unsigned char *)window->bitmap_memory;
@@ -58,6 +64,8 @@ int main() {
 
 			row += pitch;
 		}
+		
+		render_component(window, com);
 
 		update_window(window);
 	}

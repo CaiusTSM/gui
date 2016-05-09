@@ -50,8 +50,8 @@ struct style
 
 	bitmap *background_image;
 
-	padding padding;
-	margin margin;
+	struct padding padding;
+	struct margin margin;
 
 	bool visibility;
 
@@ -66,7 +66,7 @@ struct style
 	int max_width;
 	int max_height;
 
-	overflow overflow;
+	struct overflow overflow;
 
 	position_type position;
 
@@ -81,7 +81,7 @@ struct component
 	component *parent;
 	component *children;
 
-	style style;
+	struct style style;
 
 	int x;
 	int y;

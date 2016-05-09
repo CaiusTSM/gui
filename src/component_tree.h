@@ -3,14 +3,13 @@
 #include <window.h>
 
 struct component_tree {
-	// array of pointers (array of type "tree *")
+	struct component *component;
+	// array of pointers (array of type "component_tree *")
 	component_tree **children;
 	int num_children;
-	// TODO(Lucas): implement
-	// component *component;
 };
 
-component_tree *create_tree() {
+component_tree *create_component_tree() {
 	component_tree *t = new component_tree();
 	t->children = 0;
 	t->num_children = 0;
@@ -36,13 +35,10 @@ void component_tree_add_child(component_tree *t, component_tree *child) {
 	t->num_children++;
 }
 
-// TODO(Lucas): implement
-// searches tree for child and removes it (and all its children)
-void component_tree_remove_child(component_tree *t, component_tree *child) {}
-
-void render_component_tree(component_tree *t, window *window) {
-
+void component_tree_remove_child(component_tree *t, component_tree *child)
+{
 }
 
-// TODO(Lucas): implement
-// void render_component_tree(component_tree *t, bitmap *bitmap) {}
+void render_component_tree(component_tree *t, window *window)
+{
+}
