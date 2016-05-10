@@ -97,6 +97,20 @@ int main() {
 		}
 		
 		render_component_tree(root, stack, window);
+		
+		child1->component->style.background_color.r = 255;
+		
+		if (
+		window->cursor_x >= 120 && window->cursor_x <= 220
+		&& window->cursor_y >= 120 && window->cursor_y <= 220
+		&& component_tree_is_child(root, child1)
+		)
+		{
+			if (window->mouse_state[0])
+				component_tree_remove_child(root, child1);
+			else
+				child1->component->style.background_color.r = 0;
+		}
 
 		update_window(window);
 	}

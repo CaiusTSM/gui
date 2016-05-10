@@ -134,7 +134,8 @@ static LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM l
 	case WM_MOUSEMOVE:
 	{
 		current_window->cursor_x = LOWORD(lParam);
-		current_window->cursor_y = HIWORD(lParam);
+		// invert y (0 is bottom left)
+		current_window->cursor_y = current_window->bitmap_height - HIWORD(lParam);
 		/*
 		POINT p;
 		GetCursorPos(&p);
