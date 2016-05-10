@@ -87,8 +87,6 @@ struct component
 	int y;
 	int width;
 	int height;
-
-	rgba background_color;
 };
 
 component *create_component()
@@ -146,11 +144,6 @@ component *create_component()
 	com->width = -1;
 	com->height = -1;
 
-	com->background_color.r = 255;
-	com->background_color.g = 255;
-	com->background_color.b = 255;
-	com->background_color.a = 255;
-
 	return com;
 }
 
@@ -160,7 +153,7 @@ void free_component(component *com)
 		delete com;
 }
 
-void render_component(window *win, component *com)
+void render_component(component *com, window *win)
 {
-	render_rect(win, com->x, com->y, com->width, com->height, com->background_color);
+	render_rect(win, com->x, com->y, com->width, com->height, com->style.background_color);
 }

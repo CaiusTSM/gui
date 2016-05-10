@@ -6,4 +6,5 @@
 #define TEST_STRING 0
 #define TEST_FILEIO 0
 #define TEST_BITMAP 0
-#define TEST_COMPONENT 1
+#define TEST_COMPONENT 0
+#define TEST_COMPONENT_TREE 1
