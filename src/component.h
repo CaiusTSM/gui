@@ -1,5 +1,6 @@
 #pragma once
 
+#include <window.h>
 #include <render.h>
 #include <bitmap.h>
 
@@ -76,23 +77,35 @@ struct style
 	int bottom;
 };
 
+struct input
+{
+};
+
 struct component
 {
-	component *parent;
-	component *children;
-
+	// component css style
 	struct style style;
+	
+	// input to component
+	struct input input;
+	
+	// component update logic
+	
+	// component rendering logic
 
 	int x;
 	int y;
 	int width;
 	int height;
+	
+	void (*render_function_to_window)(void *object, window *win);
+	void (*render_function_to_bitmap)(void *object, bitmap *bmp);
+	
+	void (*update_function)(void *object);
 };
 
-component *create_component()
+void init_component(component *com)
 {
-	component *com = new component();
-
 	com->style.color.r = 255;
 	com->style.color.g = 255;
 	com->style.color.b = 255;
@@ -143,11 +156,9 @@ component *create_component()
 
 	com->width = -1;
 	com->height = -1;
-
-	return com;
 }
 
-void free_component(component *com)
+void destroy_component(component *com)
 {
 	if (com)
 		delete com;

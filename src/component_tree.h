@@ -12,10 +12,24 @@ struct component_tree
 	int num_children;
 };
 
+void component_tree_init(component_tree *t)
+{
+	t->component = new component();
+	init_component(t->component);
+	t->children = 0;
+	t->num_children = 0;
+}
+
+void component_tree_free(component_tree *t)
+{
+	destroy_component(t->component);
+}
+
 component_tree *create_component_tree()
 {
 	component_tree *t = new component_tree();
-	t->component = create_component();
+	t->component = new component();
+	init_component(t->component);
 	t->children = 0;
 	t->num_children = 0;
 
@@ -25,7 +39,7 @@ component_tree *create_component_tree()
 // TODO(Lucas): implement
 void free_component_tree(component_tree *t)
 {
-	free_component(t->component);
+	destroy_component(t->component);
 	delete t;
 }
 
@@ -73,11 +87,30 @@ void component_tree_remove_child(component_tree *parent, component_tree *child)
 	}
 }
 
-void render_component_tree(component_tree *t, render_stack *stack, window *window)
+void render_component_tree(component_tree *t, window *window)
 {
-	if (t == 0 || stack == 0 || window == 0)
+	if (t == 0 || window == 0)
 		return;
 	
+	component_tree *stack[413];
+	stack[0] = t;
+	int length = 1;
+	
+	while (length > 0)
+	{
+		component_tree *top = stack[length - 1];
+		length--;
+		
+		render_component(top->component, window);
+		
+		for (int i = 0; i < top->num_children; i++)
+		{
+			stack[length] = top->children[i];
+			length++;
+		}
+	}
+	
+	/*
 	render_stack_push(stack, t);
 	
 	while (render_stack_empty(stack) == false)
@@ -88,4 +121,5 @@ void render_component_tree(component_tree *t, render_stack *stack, window *windo
 		for (int i = 0; i < top->num_children; i++)
 			render_stack_push(stack, top->children[i]);
 	}
+	*/
 }

@@ -43,7 +43,7 @@ int main() {
 	root->component->style.background_color.g = 100;
 	root->component->style.background_color.b = 100;
 	
-	render_stack *stack = create_render_stack();
+	//render_stack *stack = create_render_stack();
 	
 	component_tree *child1 = create_component_tree();
 	child1->component->x = 120;
@@ -96,7 +96,7 @@ int main() {
 			row += pitch;
 		}
 		
-		render_component_tree(root, stack, window);
+		render_component_tree(root, window);
 		
 		child1->component->style.background_color.r = 255;
 		
